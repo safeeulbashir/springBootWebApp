@@ -4,7 +4,7 @@ import java.sql.Date;
 
 public class Employee {
 
-	private int  employeeNo;
+	private Integer  employeeNo;
 	private Date birthDate;
 	private Date hireDate;
 	private String firstName;
@@ -16,13 +16,13 @@ public class Employee {
 	/**
 	 * @return the employeeNo
 	 */
-	public int getEmployeeNo() {
+	public Integer getEmployeeNo() {
 		return employeeNo;
 	}
 	/**
 	 * @param employeeNo the employeeNo to set
 	 */
-	public void setEmployeeNo(int employeeNo) {
+	public void setEmployeeNo(Integer employeeNo) {
 		this.employeeNo = employeeNo;
 	}
 	/**

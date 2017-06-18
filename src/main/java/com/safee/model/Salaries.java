@@ -3,32 +3,32 @@ package com.safee.model;
 import java.sql.Date;
 
 public class Salaries {
-	int employeeNo;
-	int salary;
+	Integer employeeNo;
+	Integer salary;
 	Date fromDate;
 	Date toDate;
 	/**
 	 * @return the employeeNo
 	 */
-	public int getEmployeeNo() {
+	public Integer getEmployeeNo() {
 		return employeeNo;
 	}
 	/**
 	 * @param employeeNo the employeeNo to set
 	 */
-	public void setEmployeeNo(int employeeNo) {
+	public void setEmployeeNo(Integer employeeNo) {
 		this.employeeNo = employeeNo;
 	}
 	/**
 	 * @return the salary
 	 */
-	public int getSalary() {
+	public Integer getSalary() {
 		return salary;
 	}
 	/**
 	 * @param salary the salary to set
 	 */
-	public void setSalary(int salary) {
+	public void setSalary(Integer salary) {
 		this.salary = salary;
 	}
 	/**

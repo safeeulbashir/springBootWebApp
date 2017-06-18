@@ -4,12 +4,12 @@ import java.sql.Date;
 
 public class EmployeeInformations {
 
-	private int empNo;
+	private Integer empNo;
 	private String firstName;
 	private String lastName;
 	private Date joinDate;
 	private String deptartmentName;
-	private int salary;
+	private Integer salary;
 
 	public double calculateGrossSalary() // (basic salary + 30% basic salary)
 	{
@@ -19,7 +19,7 @@ public class EmployeeInformations {
 	/**
 	 * @return the salary
 	 */
-	public int getSalary() {
+	public Integer getSalary() {
 		return salary;
 	}
 
@@ -27,14 +27,14 @@ public class EmployeeInformations {
 	 * @param salary
 	 *            the salary to set
 	 */
-	public void setSalary(int salary) {
+	public void setSalary(Integer salary) {
 		this.salary = salary;
 	}
 
 	/**
 	 * @return the empNo
 	 */
-	public int getEmpNo() {
+	public Integer getEmpNo() {
 		return empNo;
 	}
 
@@ -42,7 +42,7 @@ public class EmployeeInformations {
 	 * @param empNo
 	 *            the empNo to set
 	 */
-	public void setEmpNo(int empNo) {
+	public void setEmpNo(Integer empNo) {
 		this.empNo = empNo;
 	}
 

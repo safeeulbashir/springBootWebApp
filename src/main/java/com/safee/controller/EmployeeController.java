@@ -118,7 +118,7 @@ public class EmployeeController {
 		}
 		model.put("message", "Employee added Successfully");
 		employeeServices.addEmployee(employee);
-		return "addEmployee";
+		return "view";
 	}
 
 }
