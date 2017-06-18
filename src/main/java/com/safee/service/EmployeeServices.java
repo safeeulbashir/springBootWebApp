@@ -1,5 +1,7 @@
 package com.safee.service;
 
+import java.util.logging.Logger;
+
 import org.springframework.stereotype.Service;
 
 import com.safee.DAO.DepartmentDao;
@@ -8,6 +10,7 @@ import com.safee.DAO.SalariesDao;
 import com.safee.model.Employee;
 import com.safee.model.EmployeeInformations;
 import com.safee.model.Salaries;
+
 @Service
 public class EmployeeServices {
 
@@ -47,16 +50,19 @@ public class EmployeeServices {
 		Employee employee = employeeDao.getEmployee(employeeInformations.getEmpNo());
 		employee.setFirstName(employeeInformations.getFirstName());
 		employee.setLastName(employeeInformations.getLastName());
+		employee.setHireDate(employeeInformations.getJoinDate());
 		employeeDao.updateEmployee(employee);
-		try{
+		System.out.println(employeeInformations.getJoinDate());
+		try {
 			Salaries salaries = salariesDao.getSalaries(employeeInformations.getEmpNo());
 			salaries.setSalary(employeeInformations.getSalary());
-			salariesDao.updateSalary(salaries);	
-		}catch (NullPointerException nullPointerException) {
+			salariesDao.updateSalary(salaries);
+		} catch (NullPointerException nullPointerException) {
 			// TODO: handle exception
 			System.out.println("Null Pointer Exception Occured.");
+
 		}
-		
+
 	}
 
 	public Integer getNewEmployeeID() {

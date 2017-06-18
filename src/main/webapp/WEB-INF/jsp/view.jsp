@@ -132,7 +132,7 @@ body {
 				<input type="button" id="submit" class="btn btn-default"
 					value="Update" onclick="doUpdate()">
 			</div>
-
+<span class="label label-success">${requestScope.message}</span>
 		</div>
 	</div>
 

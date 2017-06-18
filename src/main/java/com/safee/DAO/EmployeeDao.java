@@ -5,6 +5,9 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import org.apache.commons.logging.Log;
+import org.springframework.boot.logging.log4j2.Log4J2LoggingSystem;
+
 import com.safee.DAO.interfaces.EmployeeDaoInterface;
 import com.safee.model.Employee;
 
@@ -44,6 +47,7 @@ public class EmployeeDao implements EmployeeDaoInterface {
 			preparedStatement.setString(1, employee.getFirstName());
 			preparedStatement.setString(2, employee.getLastName());
 			preparedStatement.setInt(3, employee.getEmployeeNo());
+			System.out.println("Tada");
 			preparedStatement.executeUpdate();
 
 		} catch (SQLException e) {
@@ -59,7 +63,7 @@ public class EmployeeDao implements EmployeeDaoInterface {
 			PreparedStatement preparedStatement = connection.prepareStatement(SQL);
 			ResultSet resultSet = preparedStatement.executeQuery();
 			while (resultSet.next()) {
-				return (Integer) (resultSet.getInt(1)+1);
+				return (Integer) (resultSet.getInt(1) + 1);
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block

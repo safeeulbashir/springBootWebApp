@@ -3,6 +3,7 @@ package com.safee.controller;
 import java.sql.Date;
 import java.text.SimpleDateFormat;
 import java.util.Map;
+import java.util.logging.Logger;
 
 import javax.validation.Valid;
 
@@ -95,8 +96,8 @@ public class EmployeeController {
 			return "view";
 		}
 		employeeServices.updateEmployee(employeeInformation);
-		model.put("message", "Employee Updated Successfully");//
-		return "view";
+		model.put("message", "Message From Heaven");//
+		return "updateEmployee";
 	}
 
 	@RequestMapping(value = "/addEmployee")
