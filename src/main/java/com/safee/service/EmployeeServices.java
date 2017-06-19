@@ -31,6 +31,7 @@ public class EmployeeServices {
 			String deptName = departmentDao.getDepartment(empID).getDepName();
 			employeeInformations.setDeptartmentName(deptName);
 		} catch (NullPointerException nullPointerException) {
+			System.out.println("No Department selected");
 			employeeInformations.setDeptartmentName("N/A");
 		}
 		try {
@@ -38,6 +39,7 @@ public class EmployeeServices {
 			employeeInformations.setSalary(salary);
 		} catch (NullPointerException nullPointerException) {
 			// TODO: handle exception
+			System.out.println("No Salary Selected");
 			employeeInformations.setSalary(65000);
 		}
 		return employeeInformations;

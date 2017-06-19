@@ -93,11 +93,11 @@ public class EmployeeController {
 			@Valid @ModelAttribute("employeeInformation") EmployeeInformations employeeInformation,
 			BindingResult result, ModelMap model) {
 		if (result.hasErrors()) {
-			return "view";
+			return "updateEmployee";
 		}
 		employeeServices.updateEmployee(employeeInformation);
 		model.put("message", "Message From Heaven");//
-		return "updateEmployee";
+		return "view";
 	}
 
 	@RequestMapping(value = "/addEmployee")

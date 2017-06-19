@@ -15,7 +15,7 @@ import com.safee.model.Employee;
 public class EmployeeDao implements EmployeeDaoInterface {
 	@Override
 	public Employee getEmployee(int empId) {
-		DateFormat format = new SimpleDateFormat("YYYY-MM-DD", Locale.US);
+		DateFormat format = new SimpleDateFormat("yyyy-MM-dd", Locale.US);
 		try (Connection connection = JdbcConnectionFactory.getConnection();) {
 			String SQL = "Select * from EMPLOYEES WHERE emp_no=?";
 			PreparedStatement preparedStatement = connection.prepareStatement(SQL);
@@ -43,14 +43,14 @@ public class EmployeeDao implements EmployeeDaoInterface {
 
 		// TODO Auto-generated method stub
 		try (Connection connection = JdbcConnectionFactory.getConnection();) {
-			String SQL = "UPDATE employees SET first_name=?, last_name=? birth_date=? hire_date=? where emp_no=?";
+			String SQL = "UPDATE employees SET first_name=?, last_name=?, birth_date=?, hire_date=? where emp_no=?";
 			PreparedStatement preparedStatement = connection.prepareStatement(SQL);
 			preparedStatement.setString(1, employee.getFirstName());
 			preparedStatement.setString(2, employee.getLastName());
 			preparedStatement.setDate(3, new java.sql.Date(employee.getBirthDate().getTime()));
 			preparedStatement.setDate(4, new java.sql.Date(employee.getHireDate().getTime()));
 			preparedStatement.setInt(5, employee.getEmployeeNo());
-			System.out.println("Tada");
+			System.out.println(preparedStatement);
 			preparedStatement.executeUpdate();
 
 		} catch (SQLException e) {

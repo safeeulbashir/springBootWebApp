@@ -13,7 +13,7 @@ import com.safee.model.Salaries;
 
 public class SalariesDao {
 	public Salaries getSalaries(int empId) {
-		DateFormat format = new SimpleDateFormat("YYYY-MM-DD", Locale.US);
+		DateFormat format = new SimpleDateFormat("yyyy-MM-dd", Locale.US);
 		try (Connection connection = JdbcConnectionFactory.getConnection();) {
 			String SQL = "Select * from SALARIES WHERE emp_no=? ORDER BY from_date, to_date DESC";
 			PreparedStatement preparedStatement = connection.prepareStatement(SQL);
@@ -25,10 +25,12 @@ public class SalariesDao {
 				salaries.setSalary(resultSet.getInt("salary"));
 				salaries.setFromDate(format.parse(resultSet.getDate("from_date").toString()));
 				salaries.setToDate(format.parse(resultSet.getDate("to_date").toString()));
+				System.out.println("No exception happend"+ salaries.getFromDate());
 				return salaries;
 			}
 		} catch (SQLException | ParseException e) {
 			// TODO Auto-generated catch block
+			
 			e.printStackTrace();
 		}
 		return null;
