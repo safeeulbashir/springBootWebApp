@@ -6,6 +6,8 @@ import java.util.Map;
 
 import javax.validation.Valid;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
@@ -29,7 +31,7 @@ import com.safee.validator.EmployeeValidator;
 
 @Controller
 public class EmployeeController {
-
+	private static final Logger logger = LoggerFactory.getLogger(EmployeeController.class);
 	EmployeeServices employeeServices = new EmployeeServices();
 	// inject via application.properties
 	@Value("${welcome.message:test}")
@@ -44,7 +46,7 @@ public class EmployeeController {
 		SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
 		sdf.setLenient(true);
 		binder.registerCustomEditor(Date.class, new CustomDateEditor(sdf, true));
-		System.out.println("Binder called for employee");
+		logger.debug("Binder called for employee");
 		binder.addValidators(employeeValidator);
 
 	}
@@ -128,9 +130,8 @@ public class EmployeeController {
 	@RequestMapping(value = "/addInformation", method = RequestMethod.POST)
 	public String addInformation(@ModelAttribute("employee") @Valid Employee employee, BindingResult result,
 			ModelMap model) {
-		// System.out.println(employee.getBirthDate());
 		if (result.hasErrors()) {
-			System.out.println(employee.toString());
+			logger.error("Model not mapped. Error from addInformation");
 			return "addEmployee";
 		}
 		model.put("message", "Employee added Successfully");

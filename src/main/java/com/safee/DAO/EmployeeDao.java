@@ -9,10 +9,15 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Locale;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import com.safee.DAO.interfaces.EmployeeDaoInterface;
+import com.safee.controller.EmployeeController;
 import com.safee.model.Employee;
 
 public class EmployeeDao implements EmployeeDaoInterface {
+	private static final Logger logger = LoggerFactory.getLogger(EmployeeDao.class);
 	@Override
 	public Employee getEmployee(int empId) {
 		DateFormat format = new SimpleDateFormat("yyyy-MM-dd", Locale.US);
@@ -50,7 +55,7 @@ public class EmployeeDao implements EmployeeDaoInterface {
 			preparedStatement.setDate(3, new java.sql.Date(employee.getBirthDate().getTime()));
 			preparedStatement.setDate(4, new java.sql.Date(employee.getHireDate().getTime()));
 			preparedStatement.setInt(5, employee.getEmployeeNo());
-			System.out.println(preparedStatement);
+			logger.debug(preparedStatement.toString());
 			preparedStatement.executeUpdate();
 
 		} catch (SQLException e) {
@@ -66,10 +71,12 @@ public class EmployeeDao implements EmployeeDaoInterface {
 			PreparedStatement preparedStatement = connection.prepareStatement(SQL);
 			ResultSet resultSet = preparedStatement.executeQuery();
 			while (resultSet.next()) {
+				logger.debug("Generated ID:"+(Integer) (resultSet.getInt(1) + 1));
 				return (Integer) (resultSet.getInt(1) + 1);
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
+			logger.debug("No ID generated");
 			e.printStackTrace();
 		}
 		return null;

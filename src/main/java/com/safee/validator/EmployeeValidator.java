@@ -25,7 +25,7 @@ public class EmployeeValidator implements Validator {
 		Employee user = (Employee) target;
 		ValidationUtils.rejectIfEmpty(errors, "firstName", "user.username.empty.err");
 		ValidationUtils.rejectIfEmpty(errors, "lastName", "user.username.empty.err");
-		//errors.rejectValue("firstName", "Tada");
+
 	}
 
 }
