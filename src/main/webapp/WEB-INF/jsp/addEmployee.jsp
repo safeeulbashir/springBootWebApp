@@ -95,15 +95,15 @@ $(document).ready(function () {
 		<!-- /.container -->
 	</nav>
 
-
+<form:errors path="*"></form:errors>
 	<div class="container" id="EmployeeDisplayer">
+	
 		<div class="row">
 			<div class="col-md-offset-5 col-md-3">
-			<form:errors path="*"></form:errors>
 				<div class="form-login">
-					<form:form modelAttribute="employee" id='employeeAddForm' name='employeeAddForm'
-						action="/addInformation" method="post"
-						 onsubmit="return validateUpdateform()">
+					<form:form modelAttribute="employee" id='employeeAddForm'
+						name='employeeAddForm' action="/addInformation" method="post"
+						onsubmit="return validateUpdateform()">
 						<input type="hidden" name="function" value="addRequest">
 						<table>
 							<tr>
@@ -112,7 +112,7 @@ $(document).ready(function () {
 										path="employeeNo" id="userUpdateID" name="userUpdateID"
 										class="form-control input-sm chat-input" placeholder="User ID"></form:hidden>
 								</td>
-
+								<td class="span4"></td>
 							</tr>
 							<tr>
 								<td>First Name:</td>
@@ -120,6 +120,7 @@ $(document).ready(function () {
 										id="userFirstName" name="userFirstName"
 										class="form-control input-sm chat-input"
 										placeholder="First Name" /></td>
+										<td class="span4"><form:errors path="firstName"></form:errors></td>
 
 							</tr>
 							<tr>
@@ -127,25 +128,28 @@ $(document).ready(function () {
 								<td><form:input path="lastName" id="userLastName"
 										name="userLastName" class="form-control input-sm chat-input"
 										placeholder="Last Name" /></td>
-
+<td class="span4"><form:errors path="lastName"></form:errors></td>
 							</tr>
 							<tr>
 								<td>Date of Birth:</td>
 								<td><form:input path="birthDate" id="dateOfBirth"
 										name="dateOfBirth" class="form-control input-sm chat-input"
 										placeholder="Date of Birth" /></td>
+										<td class="span4"><form:errors path="birthDate"></form:errors></td>
 							</tr>
 							<tr>
 								<td>Date of Hire</td>
 								<td><form:input path="hireDate" id="hireDate"
 										name="hireDate" class="form-control input-sm chat-input"
 										placeholder="Hiring Date" /></td>
+										<td class="span4"><form:errors path="hireDate"></form:errors></td>
 							</tr>
 							<tr>
 								<td>Gender</td>
 								<td><form:input type="text" path="gender" id="gender"
 										name="gender" class="form-control input-sm chat-input"
 										placeholder="M/F" /></td>
+										<td class="span4"><form:errors path="gender"></form:errors></td>
 							</tr>
 							<tr colspan="2">
 								<td><input type="submit" id="submit"

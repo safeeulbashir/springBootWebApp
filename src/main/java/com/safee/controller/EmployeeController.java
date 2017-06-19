@@ -1,12 +1,12 @@
 package com.safee.controller;
 
-import java.util.Date;
 import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Map;
-import java.util.logging.Logger;
 
 import javax.validation.Valid;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
@@ -24,6 +24,8 @@ import com.safee.DAO.EmployeeDao;
 import com.safee.model.Employee;
 import com.safee.model.EmployeeInformations;
 import com.safee.service.EmployeeServices;
+import com.safee.validator.EmpInfValidator;
+import com.safee.validator.EmployeeValidator;
 
 @Controller
 public class EmployeeController {
@@ -32,12 +34,24 @@ public class EmployeeController {
 	// inject via application.properties
 	@Value("${welcome.message:test}")
 	private String message = "Hello World";
+	@Autowired
+	private EmployeeValidator employeeValidator;
+	@Autowired
+	private EmpInfValidator empInfValidator;
 
-	@InitBinder
+	@InitBinder("employee")
 	public void initBinder(WebDataBinder binder) {
 		SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
 		sdf.setLenient(true);
 		binder.registerCustomEditor(Date.class, new CustomDateEditor(sdf, true));
+		System.out.println("Binder called for employee");
+		binder.addValidators(employeeValidator);
+
+	}
+
+	@InitBinder("empInfValidator")
+	public void empInfBinder(WebDataBinder binder) {
+		binder.addValidators(empInfValidator);
 	}
 
 	@RequestMapping("/")
@@ -90,8 +104,8 @@ public class EmployeeController {
 
 	@RequestMapping(value = "/updateEmployeeInformation", method = RequestMethod.POST)
 	public String updateEmployeeInformation(
-			@Valid @ModelAttribute("employeeInformation") EmployeeInformations employeeInformation,
-			BindingResult result, ModelMap model) {
+			@ModelAttribute("employeeInformation") EmployeeInformations employeeInformation, BindingResult result,
+			ModelMap model) {
 		if (result.hasErrors()) {
 			return "updateEmployee";
 		}
@@ -112,12 +126,12 @@ public class EmployeeController {
 	}
 
 	@RequestMapping(value = "/addInformation", method = RequestMethod.POST)
-	public String addInformation(@ModelAttribute("employee") Employee employee, BindingResult result,
+	public String addInformation(@ModelAttribute("employee") @Valid Employee employee, BindingResult result,
 			ModelMap model) {
-		System.out.println(employee.getBirthDate());
+		// System.out.println(employee.getBirthDate());
 		if (result.hasErrors()) {
 			System.out.println(employee.toString());
-			return "updateEmployee";
+			return "addEmployee";
 		}
 		model.put("message", "Employee added Successfully");
 		employeeServices.addEmployee(employee);
