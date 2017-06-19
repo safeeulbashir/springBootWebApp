@@ -1,6 +1,6 @@
 package com.safee.controller;
 
-import java.sql.Date;
+import java.util.Date;
 import java.text.SimpleDateFormat;
 import java.util.Map;
 import java.util.logging.Logger;
@@ -35,7 +35,7 @@ public class EmployeeController {
 
 	@InitBinder
 	public void initBinder(WebDataBinder binder) {
-		SimpleDateFormat sdf = new SimpleDateFormat("MM-dd-yyyy");
+		SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
 		sdf.setLenient(true);
 		binder.registerCustomEditor(Date.class, new CustomDateEditor(sdf, true));
 	}
@@ -112,10 +112,12 @@ public class EmployeeController {
 	}
 
 	@RequestMapping(value = "/addInformation", method = RequestMethod.POST)
-	public String addInformation(@Valid @ModelAttribute("employee") Employee employee, BindingResult result,
+	public String addInformation(@ModelAttribute("employee") Employee employee, BindingResult result,
 			ModelMap model) {
+		System.out.println(employee.getBirthDate());
 		if (result.hasErrors()) {
-
+			System.out.println(employee.toString());
+			return "updateEmployee";
 		}
 		model.put("message", "Employee added Successfully");
 		employeeServices.addEmployee(employee);

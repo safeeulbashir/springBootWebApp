@@ -99,6 +99,7 @@ $(document).ready(function () {
 	<div class="container" id="EmployeeDisplayer">
 		<div class="row">
 			<div class="col-md-offset-5 col-md-3">
+			<form:errors path="*"></form:errors>
 				<div class="form-login">
 					<form:form modelAttribute="employee" id='employeeAddForm' name='employeeAddForm'
 						action="/addInformation" method="post"

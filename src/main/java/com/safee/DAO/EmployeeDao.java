@@ -4,9 +4,10 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-
-import org.apache.commons.logging.Log;
-import org.springframework.boot.logging.log4j2.Log4J2LoggingSystem;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Locale;
 
 import com.safee.DAO.interfaces.EmployeeDaoInterface;
 import com.safee.model.Employee;
@@ -14,7 +15,7 @@ import com.safee.model.Employee;
 public class EmployeeDao implements EmployeeDaoInterface {
 	@Override
 	public Employee getEmployee(int empId) {
-
+		DateFormat format = new SimpleDateFormat("YYYY-MM-DD", Locale.US);
 		try (Connection connection = JdbcConnectionFactory.getConnection();) {
 			String SQL = "Select * from EMPLOYEES WHERE emp_no=?";
 			PreparedStatement preparedStatement = connection.prepareStatement(SQL);
@@ -25,12 +26,12 @@ public class EmployeeDao implements EmployeeDaoInterface {
 				employee.setEmployeeNo(resultSet.getInt("emp_no"));
 				employee.setFirstName(resultSet.getString("first_name"));
 				employee.setLastName(resultSet.getString("last_name"));
-				employee.setBirthDate(resultSet.getDate("birth_date"));
-				employee.setHireDate(resultSet.getDate("hire_date"));
+				employee.setBirthDate(format.parse(resultSet.getDate("birth_date").toString()));
+				employee.setHireDate(format.parse(resultSet.getDate("hire_date").toString()));
 				employee.setGender(resultSet.getString("gender"));
 				return employee;
 			}
-		} catch (SQLException e) {
+		} catch (SQLException | ParseException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
@@ -42,11 +43,13 @@ public class EmployeeDao implements EmployeeDaoInterface {
 
 		// TODO Auto-generated method stub
 		try (Connection connection = JdbcConnectionFactory.getConnection();) {
-			String SQL = "UPDATE employees SET first_name=?, last_name=? where emp_no=?";
+			String SQL = "UPDATE employees SET first_name=?, last_name=? birth_date=? hire_date=? where emp_no=?";
 			PreparedStatement preparedStatement = connection.prepareStatement(SQL);
 			preparedStatement.setString(1, employee.getFirstName());
 			preparedStatement.setString(2, employee.getLastName());
-			preparedStatement.setInt(3, employee.getEmployeeNo());
+			preparedStatement.setDate(3, new java.sql.Date(employee.getBirthDate().getTime()));
+			preparedStatement.setDate(4, new java.sql.Date(employee.getHireDate().getTime()));
+			preparedStatement.setInt(5, employee.getEmployeeNo());
 			System.out.println("Tada");
 			preparedStatement.executeUpdate();
 
@@ -79,11 +82,11 @@ public class EmployeeDao implements EmployeeDaoInterface {
 			String SQL = "INSERT INTO EMPLOYEES (emp_no, birth_date, first_name,last_name,gender,hire_date) VALUES (?,?,?,?,?,?)";
 			PreparedStatement preparedStatement = connection.prepareStatement(SQL);
 			preparedStatement.setInt(1, employee.getEmployeeNo());
-			preparedStatement.setDate(2, employee.getBirthDate());
+			preparedStatement.setDate(2, new java.sql.Date(employee.getBirthDate().getTime()));
 			preparedStatement.setString(3, employee.getFirstName());
 			preparedStatement.setString(4, employee.getLastName());
 			preparedStatement.setString(5, employee.getGender());
-			preparedStatement.setDate(6, employee.getHireDate());
+			preparedStatement.setDate(6, new java.sql.Date(employee.getHireDate().getTime()));
 			System.out.println(preparedStatement);
 			preparedStatement.executeUpdate();
 		} catch (SQLException e) {

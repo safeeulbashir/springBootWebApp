@@ -7,7 +7,7 @@ public class EmployeeInformations {
 	private Integer empNo;
 	private String firstName;
 	private String lastName;
-	private Date joinDate;
+	private java.util.Date joinDate;
 	private String deptartmentName;
 	private Integer salary;
 
@@ -65,7 +65,7 @@ public class EmployeeInformations {
 	/**
 	 * @return the joinDate
 	 */
-	public Date getJoinDate() {
+	public java.util.Date getJoinDate() {
 		return joinDate;
 	}
 
@@ -73,7 +73,7 @@ public class EmployeeInformations {
 	 * @param joinDate
 	 *            the joinDate to set
 	 */
-	public void setJoinDate(Date joinDate) {
+	public void setJoinDate(java.util.Date joinDate) {
 		this.joinDate = joinDate;
 	}
 
