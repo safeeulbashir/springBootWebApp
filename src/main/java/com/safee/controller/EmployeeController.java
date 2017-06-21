@@ -27,6 +27,7 @@ import com.safee.DAO.EmployeeDao;
 import com.safee.model.Employee;
 import com.safee.model.EmployeeInformations;
 import com.safee.service.EmployeeServices;
+import com.safee.service.EmployeeSpringServices;
 import com.safee.validator.EmpInfValidator;
 import com.safee.validator.EmployeeValidator;
 
@@ -41,6 +42,8 @@ public class EmployeeController {
 	private EmployeeValidator employeeValidator;
 	@Autowired
 	private EmpInfValidator empInfValidator;
+	@Autowired
+	private EmployeeSpringServices employeeSpringServices;
 
 	@InitBinder("employee")
 	public void initBinder(WebDataBinder binder) {
@@ -120,8 +123,8 @@ public class EmployeeController {
 
 	@RequestMapping(value = "/addEmployee")
 	public String addEmployeeInformation(ModelMap model) {
-
-		model.put("employeeNo", employeeServices.getNewEmployeeID());
+//make some changes
+		//model.put("employeeNo", employeeServices.getNewEmployeeID());
 		return "addEmployee";
 		/*
 		 * employeeServices.updateEmployee(employeeInformation);
@@ -137,7 +140,8 @@ public class EmployeeController {
 			return "addEmployee";
 		}
 		model.put("message", "Employee added Successfully");
-		employeeServices.addEmployee(employee);
+		//employeeServices.addEmployee(employee);
+		employeeSpringServices.addEmployee(employee);
 		return "view";
 	}
 

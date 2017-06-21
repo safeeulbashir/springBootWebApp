@@ -108,10 +108,7 @@ $(document).ready(function () {
 						<table>
 							<tr>
 								<td class="span4">Employee ID:</td>
-								<td class="span3">${requestScope.employeeNo}<form:hidden
-										path="employeeNo" id="userUpdateID" name="userUpdateID"
-										class="form-control input-sm chat-input" placeholder="User ID"></form:hidden>
-								</td>
+								<td class="span3"></td>
 								<td class="span4"></td>
 							</tr>
 							<tr>
