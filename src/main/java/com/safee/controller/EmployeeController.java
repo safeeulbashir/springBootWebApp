@@ -6,6 +6,7 @@ import java.util.Map;
 
 import javax.validation.Valid;
 
+import org.aspectj.lang.annotation.Pointcut;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -57,6 +58,7 @@ public class EmployeeController {
 	}
 
 	@RequestMapping("/")
+	
 	public String welcome(Map<String, Object> model) {
 		model.put("message", this.message);
 		return "index";

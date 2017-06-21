@@ -1,8 +1,10 @@
 package com.safee.model;
 
-import java.sql.Date;
+import java.io.Serializable;
 
-public class EmployeeInformations {
+import javax.xml.bind.annotation.XmlRootElement;
+@XmlRootElement
+public class EmployeeInformations implements Serializable {
 
 	private Integer empNo;
 	private String firstName;
