@@ -10,7 +10,7 @@ import javax.persistence.Id;
 public class Employee {
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
-	private Integer  employeeNo;
+	private Long  employeeNo;
 	private Date birthDate;
 	private Date hireDate;
 	private String firstName;
@@ -22,13 +22,13 @@ public class Employee {
 	/**
 	 * @return the employeeNo
 	 */
-	public Integer getEmployeeNo() {
+	public Long getEmployeeNo() {
 		return employeeNo;
 	}
 	/**
 	 * @param employeeNo the employeeNo to set
 	 */
-	public void setEmployeeNo(Integer employeeNo) {
+	public void setEmployeeNo(Long employeeNo) {
 		this.employeeNo = employeeNo;
 	}
 	/**

@@ -107,26 +107,30 @@ body {
 				<table class="table table-bordered">
 					<tr>
 						<td class="span4">Employee ID</td>
-						<td class="span3">${requestScope.employeeInformation.getEmpNo()}</td>
+						<td class="span3">${requestScope.employee.getEmployeeNo()}</td>
 
 					</tr>
 					<tr>
 						<td>First Name</td>
-						<td>${requestScope.employeeInformation.getFirstName()}</td>
+						<td>${requestScope.employee.getFirstName()}</td>
 
 					</tr>
 					<tr>
 						<td>Last Name</td>
-						<td>${requestScope.employeeInformation.getLastName()}</td>
+						<td>${requestScope.employee.getLastName()}</td>
 
 					</tr>
 					<tr>
-						<td>Department Name</td>
-						<td>${requestScope.employeeInformation.getDeptartmentName()}</td>
+						<td>Birth Date</td>
+						<td>${requestScope.employee.getBirthDate()}</td>
 					</tr>
 					<tr>
-						<td>Salary</td>
-						<td>${requestScope.employeeInformation.getSalary()}</td>
+						<td>Hiring Date</td>
+						<td>${requestScope.employee.getHireDate()}</td>
+					</tr>
+					<tr>
+						<td>Gender</td>
+						<td>${requestScope.employee.getGender()}</td>
 					</tr>
 				</table>
 				<input type="button" id="submit" class="btn btn-default"

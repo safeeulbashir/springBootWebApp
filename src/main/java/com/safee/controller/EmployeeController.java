@@ -2,11 +2,11 @@ package com.safee.controller;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.Map;
 
 import javax.validation.Valid;
 
-import org.aspectj.lang.annotation.Pointcut;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -74,11 +74,12 @@ public class EmployeeController {
 	}
 
 	@RequestMapping(value = "/viewEmployee/{employeeId}")
-	public String view(@PathVariable Integer employeeId, Model model) {
-		EmployeeInformations employeeInformations = employeeServices.getEmployeeInformation(employeeId);
-		EmployeeDao employeeDao = new EmployeeDao();
-		Employee employee = employeeDao.getEmployee(employeeId);
-		((Map<String, Object>) model).put("employeeInformation", employeeInformations);
+	public String view(@PathVariable Long employeeId, Model model) {
+		//EmployeeInformations employeeInformations = employeeServices.getEmployeeInformation(employeeId);
+		//EmployeeDao employeeDao = new EmployeeDao();
+		Employee employee = employeeSpringServices.readEmployee(employeeId);
+		((Map<String,Object>) model).put("employee",employee);
+		//((Map<String, Object>) model).put("employeeInformation", employeeInformations);
 		return "view";
 	}
 
@@ -105,7 +106,7 @@ public class EmployeeController {
 	@ModelAttribute("employee")
 	public Employee getEmployeeForView(Model Model) {
 		Employee employee = new Employee();
-		employee.setEmployeeNo(employeeServices.getNewEmployeeID());
+	//	employee.setEmployeeNo(employeeServices.getNewEmployeeID());
 		return employee;
 	}
 
