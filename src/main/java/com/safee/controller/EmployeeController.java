@@ -61,7 +61,7 @@ public class EmployeeController {
 	}
 
 	@RequestMapping("/")
-	
+
 	public String welcome(Map<String, Object> model) {
 		model.put("message", this.message);
 		return "index";
@@ -75,29 +75,20 @@ public class EmployeeController {
 
 	@RequestMapping(value = "/viewEmployee/{employeeId}")
 	public String view(@PathVariable Long employeeId, Model model) {
-		//EmployeeInformations employeeInformations = employeeServices.getEmployeeInformation(employeeId);
-		//EmployeeDao employeeDao = new EmployeeDao();
 		Employee employee = employeeSpringServices.readEmployee(employeeId);
-		((Map<String,Object>) model).put("employee",employee);
-		//((Map<String, Object>) model).put("employeeInformation", employeeInformations);
+		((Map<String, Object>) model).put("employee", employee);
 		return "view";
 	}
 
 	@RequestMapping(value = "/updateEmployee")
 	public String getUpdateEmployee(Model model) {
-		// model.put("message", this.message);
 		return "update";
 	}
 
 	@RequestMapping(value = "/updateEmployee/{employeeId}")
 	public String updateEmployee(@PathVariable Long employeeId, Model model) {
-		/*EmployeeInformations employeeInformations = employeeServices.getEmployeeInformation(employeeId);
-		EmployeeDao employeeDao = new EmployeeDao();
-		Employee employee = employeeDao.getEmployee(employeeId);
-		((Map<String, Object>) model).put("employeeInformation", employeeInformations);
-		*/
 		Employee employee = employeeSpringServices.readEmployee(employeeId);
-		((Map<String,Object>) model).put("employee",employee);
+		((Map<String, Object>) model).put("employee", employee);
 		return "update";
 	}
 
@@ -109,33 +100,24 @@ public class EmployeeController {
 	@ModelAttribute("employee")
 	public Employee getEmployeeForView(Model Model) {
 		Employee employee = new Employee();
-	//	employee.setEmployeeNo(employeeServices.getNewEmployeeID());
 		return employee;
 	}
 
 	@RequestMapping(value = "/updateEmployeeInformation", method = RequestMethod.POST)
-	public String updateEmployeeInformation(
-			@ModelAttribute("employee") Employee employee, BindingResult result,
+	public String updateEmployeeInformation(@ModelAttribute("employee") Employee employee, BindingResult result,
 			ModelMap model) {
 		if (result.hasErrors()) {
 			return "updateEmployee";
 		}
-		//employeeServices.updateEmployee(employeeInformation);
 		employeeSpringServices.addEmployee(employee);
-		
+
 		model.put("message", "Message From Heaven");//
 		return "view";
 	}
 
 	@RequestMapping(value = "/addEmployee")
 	public String addEmployeeInformation(ModelMap model) {
-//make some changes
-		//model.put("employeeNo", employeeServices.getNewEmployeeID());
 		return "addEmployee";
-		/*
-		 * employeeServices.updateEmployee(employeeInformation);
-		 * model.put("message", "Employee Updated Successfully");//
-		 */
 	}
 
 	@RequestMapping(value = "/addInformation", method = RequestMethod.POST)
@@ -146,7 +128,6 @@ public class EmployeeController {
 			return "addEmployee";
 		}
 		model.put("message", "Employee added Successfully");
-		//employeeServices.addEmployee(employee);
 		employeeSpringServices.addEmployee(employee);
 		return "view";
 	}

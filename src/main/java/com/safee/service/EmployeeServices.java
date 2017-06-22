@@ -24,9 +24,9 @@ public class EmployeeServices {
 		employeeInformations.setFirstName(employeeDao.getEmployee(empID).getFirstName());
 		;
 		employeeInformations.setLastName(employeeDao.getEmployee(empID).getLastName());
-		employeeInformations.setEmpNo(employeeDao.getEmployee(empID).getEmployeeNo());
+		/*employeeInformations.setEmpNo(employeeDao.getEmployee(empID).getEmployeeNo());
 		employeeInformations.setJoinDate(employeeDao.getEmployee(empID).getHireDate());
-
+*/
 		try {
 			String deptName = departmentDao.getDepartment(empID).getDepName();
 			employeeInformations.setDeptartmentName(deptName);

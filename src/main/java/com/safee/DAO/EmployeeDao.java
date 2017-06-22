@@ -28,7 +28,7 @@ public class EmployeeDao implements EmployeeDaoInterface {
 			ResultSet resultSet = preparedStatement.executeQuery();
 			if (resultSet.next()) {
 				Employee employee = new Employee();
-				employee.setEmployeeNo(resultSet.getInt("emp_no"));
+				employee.setEmployeeNo(new Long(resultSet.getInt("emp_no")));
 				employee.setFirstName(resultSet.getString("first_name"));
 				employee.setLastName(resultSet.getString("last_name"));
 				employee.setBirthDate(format.parse(resultSet.getDate("birth_date").toString()));
@@ -54,7 +54,7 @@ public class EmployeeDao implements EmployeeDaoInterface {
 			preparedStatement.setString(2, employee.getLastName());
 			preparedStatement.setDate(3, new java.sql.Date(employee.getBirthDate().getTime()));
 			preparedStatement.setDate(4, new java.sql.Date(employee.getHireDate().getTime()));
-			preparedStatement.setInt(5, employee.getEmployeeNo());
+			preparedStatement.setLong(5, employee.getEmployeeNo());
 			logger.debug(preparedStatement.toString());
 			preparedStatement.executeUpdate();
 
@@ -88,7 +88,7 @@ public class EmployeeDao implements EmployeeDaoInterface {
 		try (Connection connection = JdbcConnectionFactory.getConnection()) {
 			String SQL = "INSERT INTO EMPLOYEES (emp_no, birth_date, first_name,last_name,gender,hire_date) VALUES (?,?,?,?,?,?)";
 			PreparedStatement preparedStatement = connection.prepareStatement(SQL);
-			preparedStatement.setInt(1, employee.getEmployeeNo());
+			preparedStatement.setLong(1, employee.getEmployeeNo());
 			preparedStatement.setDate(2, new java.sql.Date(employee.getBirthDate().getTime()));
 			preparedStatement.setString(3, employee.getFirstName());
 			preparedStatement.setString(4, employee.getLastName());
