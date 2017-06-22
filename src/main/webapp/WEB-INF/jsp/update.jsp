@@ -126,14 +126,14 @@ body {
 					<form:form id='employeeUpdateForm'
 						onsubmit="return validateUpdateform()"
 						action="/updateEmployeeInformation" method="POST"
-						modelAttribute="employeeInformation">
+						modelAttribute="employee">
 
 						<input type="hidden" name="function" value="updateRequest">
 						<table>
 							<tr>
 								<td class="span4">Employee ID:</td>
-								<td class="span3">${requestScope.employeeInformation.getEmpNo()}
-									<form:hidden path="empNo" id="userUpdateID" name="userUpdateID"
+								<td class="span3">${requestScope.employee.getEmployeeNo()}<form:hidden
+										path="employeeNo" id="userUpdateID" name="userUpdateID"
 										placeholder="User ID"></form:hidden>
 								</td>
 
@@ -154,25 +154,25 @@ body {
 
 							</tr>
 							<tr>
-								<td>Department Name:</td>
-								<td>${requestScope.employeeInformation.getDeptartmentName()}<form:hidden
-										path="deptartmentName" id="userDepartment"
-										name="userDepartment" class="form-control input-sm chat-input"
-										placeholder="userDepartment"></form:hidden>
-								</td>
-							</tr>
-							<tr>
-								<td>Salary</td>
-								<td><form:input path="salary" id="userSalary"
-										name="userSalary" class="form-control input-sm chat-input"
-										placeholder="Salary" /></td>
+								<td>Birth Date</td>
+								<td><form:input path="birthDate" id="userBirthDate"
+										name="userBirthDate"
+										class="form-control input-sm chat-input"
+										placeholder="Birth Date" /> </td>
 							</tr>
 							<tr>
 								<td>Joining Date</td>
-								<td>${requestScope.employeeInformation.getJoinDate() }<form:hidden
-										path="joinDate" id="userJoiningDate" name="userJoiningDate"
+								<td><form:input path="hireDate" id="userJoiningDate"
+										name="userJoiningDate"
 										class="form-control input-sm chat-input"
-										placeholder="Joining Date" /> <%-- </form:hidden> --%></td>
+										placeholder="Joining Date" /> </td>
+							</tr>
+							<tr>
+								<td>Gender</td>
+								<td><form:input path="gender" id="userJoiningDate"
+										name="userGender"
+										class="form-control input-sm chat-input"
+										placeholder="M/F" /></td>
 							</tr>
 							<tr colspan="2">
 								<td><input type="submit" id="submit"

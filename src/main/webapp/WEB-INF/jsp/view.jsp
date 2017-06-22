@@ -106,13 +106,8 @@ body {
 				</form>
 				<table class="table table-bordered">
 					<tr>
-						<td class="span4">Employee ID</td>
-						<td class="span3">${requestScope.employee.getEmployeeNo()}</td>
-
-					</tr>
-					<tr>
-						<td>First Name</td>
-						<td>${requestScope.employee.getFirstName()}</td>
+						<td class="span4">First Name</td>
+						<td class="span3">${requestScope.employee.getFirstName()}</td>
 
 					</tr>
 					<tr>
@@ -136,7 +131,7 @@ body {
 				<input type="button" id="submit" class="btn btn-default"
 					value="Update" onclick="doUpdate()">
 			</div>
-<span class="label label-success">${requestScope.message}</span>
+			<span class="label label-success">${requestScope.message}</span>
 		</div>
 	</div>
 

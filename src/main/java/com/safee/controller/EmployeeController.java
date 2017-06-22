@@ -90,11 +90,14 @@ public class EmployeeController {
 	}
 
 	@RequestMapping(value = "/updateEmployee/{employeeId}")
-	public String updateEmployee(@PathVariable Integer employeeId, Model model) {
-		EmployeeInformations employeeInformations = employeeServices.getEmployeeInformation(employeeId);
+	public String updateEmployee(@PathVariable Long employeeId, Model model) {
+		/*EmployeeInformations employeeInformations = employeeServices.getEmployeeInformation(employeeId);
 		EmployeeDao employeeDao = new EmployeeDao();
 		Employee employee = employeeDao.getEmployee(employeeId);
 		((Map<String, Object>) model).put("employeeInformation", employeeInformations);
+		*/
+		Employee employee = employeeSpringServices.readEmployee(employeeId);
+		((Map<String,Object>) model).put("employee",employee);
 		return "update";
 	}
 
@@ -112,12 +115,14 @@ public class EmployeeController {
 
 	@RequestMapping(value = "/updateEmployeeInformation", method = RequestMethod.POST)
 	public String updateEmployeeInformation(
-			@ModelAttribute("employeeInformation") EmployeeInformations employeeInformation, BindingResult result,
+			@ModelAttribute("employee") Employee employee, BindingResult result,
 			ModelMap model) {
 		if (result.hasErrors()) {
 			return "updateEmployee";
 		}
-		employeeServices.updateEmployee(employeeInformation);
+		//employeeServices.updateEmployee(employeeInformation);
+		employeeSpringServices.addEmployee(employee);
+		
 		model.put("message", "Message From Heaven");//
 		return "view";
 	}
