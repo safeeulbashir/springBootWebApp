@@ -22,4 +22,9 @@ public class EmployeeServices {
 	{
 		employeeDaoInterface.addEmployee(employee);
 	}
+	public void updateEmployee(Employee employee) {
+		// TODO Auto-generated method stub
+		employeeDaoInterface.updateEmployee(employee);
+		
+	}
 }

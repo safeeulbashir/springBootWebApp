@@ -41,7 +41,7 @@ public class EmployeeController {
 	private EmployeeValidator employeeValidator;
 	@Autowired
 	private EmpInfValidator empInfValidator;
-	
+
 	@InitBinder("employee")
 	public void initBinder(WebDataBinder binder) {
 		SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
@@ -71,14 +71,7 @@ public class EmployeeController {
 
 	@RequestMapping(value = "/viewEmployee/{employeeId}")
 	public String view(@PathVariable Integer employeeId, Model model) {
-		/*
-		 * EmployeeInformations employeeInformations =
-		 * employeeServices.getEmployeeInformation(employeeId); EmployeeDao
-		 * employeeDao = new EmployeeDao(); Employee employee =
-		 * employeeDao.getEmployee(employeeId); ((Map<String, Object>)
-		 * model).put("employeeInformation", employeeInformations);
-		 */ //employeeServices.getAllEmployeeById();
-		if(employeeServices==null)
+		if (employeeServices == null)
 			logger.debug("employee service is null");
 		logger.debug("employee service is not null");
 		logger.debug(employeeServices.getEmployeeById(employeeId).getFirstName());
@@ -88,19 +81,15 @@ public class EmployeeController {
 
 	@RequestMapping(value = "/updateEmployee")
 	public String getUpdateEmployee(Model model) {
-		// model.put("message", this.message);
 		return "update";
 	}
 
 	@RequestMapping(value = "/updateEmployee/{employeeId}")
 	public String updateEmployee(@PathVariable Integer employeeId, Model model) {
-		/*
-		 * EmployeeInformations employeeInformations =
-		 * employeeServices.getEmployeeInformation(employeeId); EmployeeDao
-		 * employeeDao = new EmployeeDao(); Employee employee =
-		 * employeeDao.getEmployee(employeeId); ((Map<String, Object>)
-		 * model).put("employeeInformation", employeeInformations);
-		 */ return "update";
+		logger.debug(employeeServices.getEmployeeById(employeeId).getFirstName());
+		((Map<String, Object>) model).put("employee", employeeServices.getEmployeeById(employeeId));
+
+		return "update";
 	}
 
 	@ModelAttribute("employeeInformation")
@@ -111,31 +100,25 @@ public class EmployeeController {
 	@ModelAttribute("employee")
 	public Employee getEmployeeForView(Model Model) {
 		// employee.setEmployeeNo(employeeServices.getNewEmployeeID());
-		Employee employee= new Employee();
+		Employee employee = new Employee();
 		return employee;
 	}
 
 	@RequestMapping(value = "/updateEmployeeInformation", method = RequestMethod.POST)
 	public String updateEmployeeInformation(
-			@ModelAttribute("employeeInformation") EmployeeInformations employeeInformation, BindingResult result,
+			@ModelAttribute("employee") Employee employee, BindingResult result,
 			ModelMap model) {
 		if (result.hasErrors()) {
 			return "updateEmployee";
 		}
-		// employeeServices.updateEmployee(employeeInformation);
+		 employeeServices.updateEmployee(employee);
 		model.put("message", "Message From Heaven");//
 		return "view";
 	}
 
 	@RequestMapping(value = "/addEmployee")
 	public String addEmployeeInformation(ModelMap model) {
-
-		// model.put("employeeNo", employeeServices.getNewEmployeeID());
 		return "addEmployee";
-		/*
-		 * employeeServices.updateEmployee(employeeInformation);
-		 * model.put("message", "Employee Updated Successfully");//
-		 */
 	}
 
 	@RequestMapping(value = "/addInformation", method = RequestMethod.POST)

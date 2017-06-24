@@ -30,21 +30,26 @@ public class EmployeeDao implements EmployeeDaoInterface {
 		Transaction transaction = session.beginTransaction();
 		session.save(employee);
 		transaction.commit();
+		session.close();
 		// hibernateTemplate.save(employee);
 	}
 
 	@Override
 	public Employee getEmployee(Integer employeeNo) {
-		/*
-		 * logger.debug("Employee ID: " + employeeNo); if (hibernateTemplate ==
-		 * null) logger.debug("template is null");
-		 * 
-		 * return hibernateTemplate.get(Employee.class, employeeNo);
-		 */return null;
+		Session session= sessionFactory.openSession();
+		Employee employee = (Employee) session.get(Employee.class, employeeNo);
+		return employee;
 	}
 
 	@Override
+	@Transactional
 	public void updateEmployee(Employee employee) {
+		logger.debug("Updating Employee");
+		Session session = sessionFactory.openSession();
+		Transaction transaction = session.beginTransaction();
+		session.saveOrUpdate(employee);
+		transaction.commit();
+		session.close();
 
 	}
 
