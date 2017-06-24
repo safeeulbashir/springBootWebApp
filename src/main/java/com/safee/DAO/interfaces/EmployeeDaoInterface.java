@@ -1,11 +1,13 @@
 package com.safee.DAO.interfaces;
 
+import java.util.List;
+
 import com.safee.model.Employee;
 
 public interface EmployeeDaoInterface {
-	Employee getEmployee(int empId);
+	Employee getEmployee(Long employeeNo);
 	void updateEmployee(Employee employee);
-	Integer getNewEmployeeID();
 	void addEmployee(Employee employee);
+	public List<Employee> getAllEmployee();
 
 }

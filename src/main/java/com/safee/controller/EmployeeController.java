@@ -32,7 +32,8 @@ import com.safee.validator.EmployeeValidator;
 @Controller
 public class EmployeeController {
 	private static final Logger logger = LoggerFactory.getLogger(EmployeeController.class);
-	EmployeeServices employeeServices = new EmployeeServices();
+	@Autowired
+	EmployeeServices employeeServices;
 	// inject via application.properties
 	@Value("${welcome.message:test}")
 	private String message = "Hello World";
@@ -40,7 +41,7 @@ public class EmployeeController {
 	private EmployeeValidator employeeValidator;
 	@Autowired
 	private EmpInfValidator empInfValidator;
-
+	
 	@InitBinder("employee")
 	public void initBinder(WebDataBinder binder) {
 		SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
@@ -69,11 +70,19 @@ public class EmployeeController {
 	}
 
 	@RequestMapping(value = "/viewEmployee/{employeeId}")
-	public String view(@PathVariable Integer employeeId, Model model) {
-		EmployeeInformations employeeInformations = employeeServices.getEmployeeInformation(employeeId);
-		EmployeeDao employeeDao = new EmployeeDao();
-		Employee employee = employeeDao.getEmployee(employeeId);
-		((Map<String, Object>) model).put("employeeInformation", employeeInformations);
+	public String view(@PathVariable Long employeeId, Model model) {
+		/*
+		 * EmployeeInformations employeeInformations =
+		 * employeeServices.getEmployeeInformation(employeeId); EmployeeDao
+		 * employeeDao = new EmployeeDao(); Employee employee =
+		 * employeeDao.getEmployee(employeeId); ((Map<String, Object>)
+		 * model).put("employeeInformation", employeeInformations);
+		 */ //employeeServices.getAllEmployeeById();
+		if(employeeServices==null)
+			logger.debug("employee service is null");
+		logger.debug("employee service is not null");
+		logger.debug(employeeServices.getEmployeeById(employeeId).getFirstName());
+		((Map<String, Object>) model).put("employee", employeeServices.getEmployeeById(employeeId));
 		return "view";
 	}
 
@@ -85,11 +94,13 @@ public class EmployeeController {
 
 	@RequestMapping(value = "/updateEmployee/{employeeId}")
 	public String updateEmployee(@PathVariable Integer employeeId, Model model) {
-		EmployeeInformations employeeInformations = employeeServices.getEmployeeInformation(employeeId);
-		EmployeeDao employeeDao = new EmployeeDao();
-		Employee employee = employeeDao.getEmployee(employeeId);
-		((Map<String, Object>) model).put("employeeInformation", employeeInformations);
-		return "update";
+		/*
+		 * EmployeeInformations employeeInformations =
+		 * employeeServices.getEmployeeInformation(employeeId); EmployeeDao
+		 * employeeDao = new EmployeeDao(); Employee employee =
+		 * employeeDao.getEmployee(employeeId); ((Map<String, Object>)
+		 * model).put("employeeInformation", employeeInformations);
+		 */ return "update";
 	}
 
 	@ModelAttribute("employeeInformation")
@@ -99,8 +110,8 @@ public class EmployeeController {
 
 	@ModelAttribute("employee")
 	public Employee getEmployeeForView(Model Model) {
-		Employee employee = new Employee();
-		employee.setEmployeeNo(employeeServices.getNewEmployeeID());
+		// employee.setEmployeeNo(employeeServices.getNewEmployeeID());
+		Employee employee= new Employee();
 		return employee;
 	}
 
@@ -111,7 +122,7 @@ public class EmployeeController {
 		if (result.hasErrors()) {
 			return "updateEmployee";
 		}
-		employeeServices.updateEmployee(employeeInformation);
+		// employeeServices.updateEmployee(employeeInformation);
 		model.put("message", "Message From Heaven");//
 		return "view";
 	}
@@ -119,7 +130,7 @@ public class EmployeeController {
 	@RequestMapping(value = "/addEmployee")
 	public String addEmployeeInformation(ModelMap model) {
 
-		model.put("employeeNo", employeeServices.getNewEmployeeID());
+		// model.put("employeeNo", employeeServices.getNewEmployeeID());
 		return "addEmployee";
 		/*
 		 * employeeServices.updateEmployee(employeeInformation);
