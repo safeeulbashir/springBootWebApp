@@ -21,31 +21,29 @@ public class EmployeeDao implements EmployeeDaoInterface {
 	private static final Logger logger = LoggerFactory.getLogger(EmployeeDao.class);
 	@Autowired
 	private HibernateTemplate hibernateTemplate;
-		
+
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Employee> getAllEmployee() {
 		String hql = "FROM Employee as e ORDER BY p.first_name";
 		return (List<Employee>) hibernateTemplate.find(hql);
 	}
+
 	@Override
 	@Transactional
 	public void addEmployee(Employee employee) {
 		logger.debug(employee.getFirstName());
 		hibernateTemplate.save(employee);
-		//hibernateTemplate.save(employee);
+		// hibernateTemplate.save(employee);
 	}
+
 	@Override
-	public Employee getEmployee(Long employeeNo) {
+	public Employee getEmployee(Integer employeeNo) {
 		logger.debug("Employee ID: " + employeeNo);
 		if (hibernateTemplate == null)
 			logger.debug("template is null");
-		Employee employee=new Employee();
-		employee.setEmployeeNo(new Long(2l));
-		hibernateTemplate.save(employee);
-		
-		//logger.debug(employee.getEmployeeNo().toString());
-		return employee; 
+
+		return hibernateTemplate.get(Employee.class, employeeNo);
 
 	}
 
@@ -71,7 +69,5 @@ public class EmployeeDao implements EmployeeDaoInterface {
 		 * } catch (SQLException e) { // TODO Auto-generated catch block
 		 * e.printStackTrace(); }
 		 */ }
-
-	
 
 }

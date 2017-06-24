@@ -10,7 +10,7 @@ import com.safee.model.Employee;
 public class EmployeeServices {
 	@Autowired
 	EmployeeDaoInterface employeeDaoInterface;
-	public Employee getEmployeeById(Long employeeNo)
+	public Employee getEmployeeById(Integer employeeNo)
 	{
 		return employeeDaoInterface.getEmployee(employeeNo);
 	}

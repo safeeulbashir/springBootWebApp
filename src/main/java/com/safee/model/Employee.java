@@ -15,7 +15,7 @@ public class Employee {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 
-	private Long employeeNo;
+	private Integer employeeNo;
 	private Date birthDate;
 	private Date hireDate;
 	private String firstName;
@@ -39,7 +39,7 @@ public class Employee {
 	/**
 	 * @return the employeeNo
 	 */
-	public Long getEmployeeNo() {
+	public Integer getEmployeeNo() {
 		return employeeNo;
 	}
 
@@ -47,7 +47,7 @@ public class Employee {
 	 * @param employeeNo
 	 *            the employeeNo to set
 	 */
-	public void setEmployeeNo(Long employeeNo) {
+	public void setEmployeeNo(Integer employeeNo) {
 		this.employeeNo = employeeNo;
 	}
 

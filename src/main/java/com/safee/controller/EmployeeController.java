@@ -70,7 +70,7 @@ public class EmployeeController {
 	}
 
 	@RequestMapping(value = "/viewEmployee/{employeeId}")
-	public String view(@PathVariable Long employeeId, Model model) {
+	public String view(@PathVariable Integer employeeId, Model model) {
 		/*
 		 * EmployeeInformations employeeInformations =
 		 * employeeServices.getEmployeeInformation(employeeId); EmployeeDao
