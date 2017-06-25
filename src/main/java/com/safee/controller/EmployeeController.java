@@ -129,6 +129,7 @@ public class EmployeeController {
 			return "addEmployee";
 		}
 		model.put("message", "Employee added Successfully");
+		logger.debug("Employee Salary "+employee.getSalary().getSalary());
 		employeeServices.addEmployee(employee);
 		return "view";
 	}

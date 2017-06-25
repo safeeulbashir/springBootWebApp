@@ -9,11 +9,11 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Locale;
 
-import com.safee.model.Salaries;
+import com.safee.model.Salary;
 
 public class SalariesDao {
-	public Salaries getSalaries(int empId) {
-		DateFormat format = new SimpleDateFormat("yyyy-MM-dd", Locale.US);
+	public Salary getSalaries(int empId) {
+	/*	DateFormat format = new SimpleDateFormat("yyyy-MM-dd", Locale.US);
 		try (Connection connection = JdbcConnectionFactory.getConnection();) {
 			String SQL = "Select * from SALARIES WHERE emp_no=? ORDER BY from_date, to_date DESC";
 			PreparedStatement preparedStatement = connection.prepareStatement(SQL);
@@ -33,12 +33,12 @@ public class SalariesDao {
 			
 			e.printStackTrace();
 		}
-		return null;
+	*/	return null;
 	}
 
-	public void updateSalary(Salaries salaries) {
+	public void updateSalary(Salary salaries) {
 		// TODO Auto-generated method stub
-		try (Connection connection = JdbcConnectionFactory.getConnection();) {
+	/*	try (Connection connection = JdbcConnectionFactory.getConnection();) {
 			String SQL = "UPDATE SALARIES SET salary=? where emp_no=? AND from_date=? AND to_date=?";
 			PreparedStatement preparedStatement = connection.prepareStatement(SQL);
 			preparedStatement.setInt(1, salaries.getSalary());
@@ -52,6 +52,6 @@ public class SalariesDao {
 			e.printStackTrace();
 		}
 
-	}
+*/	}
 
 }

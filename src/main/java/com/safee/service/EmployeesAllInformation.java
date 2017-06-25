@@ -2,13 +2,13 @@ package com.safee.service;
 
 import com.safee.model.Department;
 import com.safee.model.Employee;
-import com.safee.model.Salaries;
+import com.safee.model.Salary;
 
 public class EmployeesAllInformation {
 
 	private Employee employee;
 	private Department department;
-	private Salaries salaries;
+	private Salary salaries;
 
 	public Employee getEmployee() {
 		return employee;
@@ -26,11 +26,11 @@ public class EmployeesAllInformation {
 		this.department = department;
 	}
 
-	public Salaries getSalaries() {
+	public Salary getSalaries() {
 		return salaries;
 	}
 
-	public void setSalaries(Salaries salaries) {
+	public void setSalaries(Salary salaries) {
 		this.salaries = salaries;
 	}
 }

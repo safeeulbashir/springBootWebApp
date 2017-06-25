@@ -11,9 +11,10 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-
+import org.springframework.transaction.annotation.Propagation;
 import com.safee.DAO.interfaces.EmployeeDaoInterface;
 import com.safee.model.Employee;
+import com.safee.model.Salary;
 
 @Repository
 @Transactional
@@ -28,10 +29,14 @@ public class EmployeeDao implements EmployeeDaoInterface {
 		logger.debug(employee.getFirstName());
 		Session session = sessionFactory.openSession();
 		Transaction transaction = session.beginTransaction();
-		session.save(employee);
+	    /* Employee employee2 = employee;
+         Salary salary2 = employee.getSalary();
+         salary2.setEmployee(employee2);
+         employee2.setSalary(salary2);
+		*/
+		session.saveOrUpdate(employee);
 		transaction.commit();
 		session.close();
-		// hibernateTemplate.save(employee);
 	}
 
 	@Override

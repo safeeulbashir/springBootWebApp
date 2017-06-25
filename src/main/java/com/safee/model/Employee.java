@@ -2,11 +2,15 @@ package com.safee.model;
 
 import java.util.Date;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
+import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 
 @Entity
@@ -14,28 +18,30 @@ import javax.persistence.Table;
 public class Employee {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-
+	@Column(unique = true, nullable = false)
 	private Integer employeeNo;
 	private Date birthDate;
 	private Date hireDate;
 	private String firstName;
 	private String lastName;
 	private String gender;
+	@OneToOne(fetch = FetchType.LAZY, mappedBy = "employee", cascade = CascadeType.ALL)
+	@PrimaryKeyJoinColumn
+	private Salary salary;
+
+	public Salary getSalary() {
+		return salary;
+	}
+
+	public void setSalary(Salary salary) {
+		this.salary = salary;
+	}
 
 	public Employee() {
 
 		// TODO Auto-generated constructor stub
 	}
 
-	/*
-	 * public Employee(Date birthDate, Date hireDate, String firstName, String
-	 * lastName, String gender) { super(); this.birthDate = birthDate;
-	 * this.hireDate = hireDate; this.firstName = firstName; this.lastName =
-	 * lastName; this.gender = gender; }
-	 */
-	/**
-	 * @return the emp_no
-	 */
 	/**
 	 * @return the employeeNo
 	 */
@@ -125,5 +131,11 @@ public class Employee {
 	public void setGender(String gender) {
 		this.gender = gender;
 	}
+	/*
+	 * protected Employee createInstance() { // log.info(
+	 * "create instance() --->" ); Employee employee = new Employee(); Salary
+	 * salary = new Salary(); salary.setEmployee(employee);
+	 * employee.setSalary(salary); return employee; }
+	 */
 
 }

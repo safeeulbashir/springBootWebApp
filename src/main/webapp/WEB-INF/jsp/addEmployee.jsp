@@ -108,7 +108,7 @@ $(document).ready(function () {
 						<table>
 							<tr>
 								<td class="span4">Employee ID:</td>
-								<td class="span3"></td>
+								<td class="span3"><form:hidden path="employeeNo" /></td>
 								<td class="span4"></td>
 							</tr>
 							<tr>
@@ -147,6 +147,13 @@ $(document).ready(function () {
 										name="gender" class="form-control input-sm chat-input"
 										placeholder="M/F" /></td>
 										<td class="span4"><form:errors path="gender"></form:errors></td>
+							</tr>
+							<tr>
+								<td>Salary</td>
+								<td><form:input type="text" path="salary.salary" id="salary"
+										name="salary" class="form-control input-sm chat-input"
+										placeholder="Ex. 10000" /></td>
+										<td class="span4"><form:errors path="salary"></form:errors></td>
 							</tr>
 							<tr colspan="2">
 								<td><input type="submit" id="submit"
