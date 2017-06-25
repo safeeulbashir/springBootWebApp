@@ -28,6 +28,10 @@ public class EmployeeDao implements EmployeeDaoInterface {
 		Session session = sessionFactory.openSession();
 		Transaction transaction = session.beginTransaction();
 		employee.getSalary().setEmployee(employee);
+		for(int i=0;i<employee.getAddresses().size();++i)
+		{
+			employee.getAddresses().get(i).setEmployee(employee);
+		}
 		session.saveOrUpdate(employee);
 		transaction.commit();
 		session.close();

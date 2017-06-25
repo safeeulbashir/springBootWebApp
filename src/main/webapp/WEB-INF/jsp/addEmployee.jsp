@@ -153,7 +153,42 @@ $(document).ready(function () {
 								<td><form:input type="text" path="salary.salary" id="salary"
 										name="salary" class="form-control input-sm chat-input"
 										placeholder="Ex. 10000" /></td>
-										<td class="span4"><form:errors path="salary"></form:errors></td>
+										<td class="span4"><form:errors path="salary.salary"></form:errors></td>
+							</tr>
+							<tr>
+								<td>Address Line 1</td>
+								<td><form:input type="text" path="addresses[0].line1" id="salary"
+										name="salary" class="form-control input-sm chat-input"
+										placeholder="Ex. 10000" /></td>
+										<td class="span4"><form:errors path="addresses[0].line1"></form:errors></td>
+							</tr>
+							<tr>
+								<td>Address Line 2</td>
+								<td><form:input type="text" path="addresses[0].line2" id="salary"
+										name="salary" class="form-control input-sm chat-input"
+										placeholder="Ex. 10000" /></td>
+										<td class="span4"><form:errors path="addresses[0].line2"></form:errors></td>
+							</tr>
+							<tr>
+								<td>City</td>
+								<td><form:input type="text" path="addresses[0].city" id="salary"
+										name="salary" class="form-control input-sm chat-input"
+										placeholder="Ex. 10000" /></td>
+										<td class="span4"><form:errors path="addresses[0].city"></form:errors></td>
+							</tr>
+							<tr>
+								<td>State</td>
+								<td><form:input type="text" path="addresses[0].state" id="salary"
+										name="salary" class="form-control input-sm chat-input"
+										placeholder="Ex. 10000" /></td>
+										<td class="span4"><form:errors path="addresses[0].state"></form:errors></td>
+							</tr>
+							<tr>
+								<td>Zip</td>
+								<td><form:input type="text" path="addresses[0].zip" id="salary"
+										name="salary" class="form-control input-sm chat-input"
+										placeholder="Ex. 10000" /></td>
+										<td class="span4"><form:errors path="addresses[0].zip"></form:errors></td>
 							</tr>
 							<tr colspan="2">
 								<td><input type="submit" id="submit"

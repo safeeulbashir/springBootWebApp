@@ -127,6 +127,15 @@ body {
 						<td>Gender</td>
 						<td>${requestScope.employee.getGender()}</td>
 					</tr>
+					
+    				<tr>
+						<td>Address</td>
+						<td>${requestScope.employee.addresses[0].getLine1()}<br>
+							${requestScope.employee.addresses[0].getLine2()}<br>
+							${requestScope.employee.addresses[0].getCity()},${requestScope.employee.addresses[0].getState()}-${requestScope.employee.addresses[0].getZip()}
+						</td>
+					</tr>
+					
 					<tr>
 						<td>Salary</td>
 						<td>${requestScope.employee.getSalary().getSalary()}</td>

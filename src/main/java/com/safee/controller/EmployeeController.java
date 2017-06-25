@@ -74,7 +74,7 @@ public class EmployeeController {
 		if (employeeServices == null)
 			logger.debug("employee service is null");
 		logger.debug("employee service is not null");
-		logger.debug(employeeServices.getEmployeeById(employeeId).getFirstName());
+		logger.debug(employeeServices.getEmployeeById(employeeId).getAddresses().get(0).getLine1());
 		((Map<String, Object>) model).put("employee", employeeServices.getEmployeeById(employeeId));
 		return "view";
 	}
