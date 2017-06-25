@@ -127,6 +127,10 @@ body {
 						<td>Gender</td>
 						<td>${requestScope.employee.getGender()}</td>
 					</tr>
+					<tr>
+						<td>Salary</td>
+						<td>${requestScope.employee.getSalary().getSalary()}</td>
+					</tr>
 				</table>
 				<input type="button" id="submit" class="btn btn-default"
 					value="Update" onclick="doUpdate()">

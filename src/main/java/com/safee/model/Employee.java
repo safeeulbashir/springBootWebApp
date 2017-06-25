@@ -131,11 +131,61 @@ public class Employee {
 	public void setGender(String gender) {
 		this.gender = gender;
 	}
-	/*
-	 * protected Employee createInstance() { // log.info(
-	 * "create instance() --->" ); Employee employee = new Employee(); Salary
-	 * salary = new Salary(); salary.setEmployee(employee);
-	 * employee.setSalary(salary); return employee; }
-	 */
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((birthDate == null) ? 0 : birthDate.hashCode());
+		result = prime * result + ((employeeNo == null) ? 0 : employeeNo.hashCode());
+		result = prime * result + ((firstName == null) ? 0 : firstName.hashCode());
+		result = prime * result + ((gender == null) ? 0 : gender.hashCode());
+		result = prime * result + ((hireDate == null) ? 0 : hireDate.hashCode());
+		result = prime * result + ((lastName == null) ? 0 : lastName.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Employee other = (Employee) obj;
+		if (birthDate == null) {
+			if (other.birthDate != null)
+				return false;
+		} else if (!birthDate.equals(other.birthDate))
+			return false;
+		if (employeeNo == null) {
+			if (other.employeeNo != null)
+				return false;
+		} else if (!employeeNo.equals(other.employeeNo))
+			return false;
+		if (firstName == null) {
+			if (other.firstName != null)
+				return false;
+		} else if (!firstName.equals(other.firstName))
+			return false;
+		if (gender == null) {
+			if (other.gender != null)
+				return false;
+		} else if (!gender.equals(other.gender))
+			return false;
+		if (hireDate == null) {
+			if (other.hireDate != null)
+				return false;
+		} else if (!hireDate.equals(other.hireDate))
+			return false;
+		if (lastName == null) {
+			if (other.lastName != null)
+				return false;
+		} else if (!lastName.equals(other.lastName))
+			return false;
+		return true;
+	}
+
 
 }

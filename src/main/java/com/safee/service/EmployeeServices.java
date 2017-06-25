@@ -19,7 +19,7 @@ public class EmployeeServices {
 		employeeDaoInterface.getAllEmployee();
 	}
 	public void addEmployee(Employee employee)
-	{
+	{		
 		employeeDaoInterface.addEmployee(employee);
 	}
 	public void updateEmployee(Employee employee) {

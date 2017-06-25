@@ -1,5 +1,6 @@
 package com.safee.model;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -11,17 +12,49 @@ import javax.persistence.Table;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Parameter;
 
+
 @Entity
 @Table(name = "salary")
 public class Salary {
-	@GenericGenerator(name = "generator", strategy = "foreign", parameters = @Parameter(name = "property", value = "employee"))
 	@Id
+	@GenericGenerator(name = "generator", strategy = "foreign", parameters = @Parameter(name = "property", value = "employee"))
 	@GeneratedValue(generator = "generator")
 	Integer employeeNo;
 	Integer salary;
-	@OneToOne(fetch = FetchType.LAZY,optional=true)
+	@OneToOne(fetch = FetchType.LAZY,optional=false, cascade= CascadeType.ALL)
 	@PrimaryKeyJoinColumn
 	Employee employee;
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((employeeNo == null) ? 0 : employeeNo.hashCode());
+		result = prime * result + ((salary == null) ? 0 : salary.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Salary other = (Salary) obj;
+		if (employeeNo == null) {
+			if (other.employeeNo != null)
+				return false;
+		} else if (!employeeNo.equals(other.employeeNo))
+			return false;
+		if (salary == null) {
+			if (other.salary != null)
+				return false;
+		} else if (!salary.equals(other.salary))
+			return false;
+		return true;
+	}
+
 	public Employee getEmployee() {
 		return employee;
 	}
