@@ -2,6 +2,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <%@ page isELIgnored="false"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -127,15 +128,15 @@ body {
 						<td>Gender</td>
 						<td>${requestScope.employee.getGender()}</td>
 					</tr>
-					
+					<c:forEach items="${requestScope.employee.getAddresses()}"  var="address" >
     				<tr>
 						<td>Address</td>
-						<td>${requestScope.employee.addresses[0].getLine1()}<br>
-							${requestScope.employee.addresses[0].getLine2()}<br>
-							${requestScope.employee.addresses[0].getCity()},${requestScope.employee.addresses[0].getState()}-${requestScope.employee.addresses[0].getZip()}
+						<td>${address.getLine1()}<br>
+							${address.getLine2()}<br>
+							${address.getCity()},${address.getState()}-${address.getZip()}
 						</td>
 					</tr>
-					
+					</c:forEach>
 					<tr>
 						<td>Salary</td>
 						<td>${requestScope.employee.getSalary().getSalary()}</td>

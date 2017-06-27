@@ -16,6 +16,16 @@ import org.hibernate.annotations.Parameter;
 @Entity
 @Table(name = "salary")
 public class Salary {
+	public Salary() {
+		
+		// TODO Auto-generated constructor stub
+	}
+
+	public Salary(Integer salary) {
+		super();
+		this.salary = salary;
+	}
+
 	@Id
 	@GenericGenerator(name = "generator", strategy = "foreign", parameters = @Parameter(name = "property", value = "employee"))
 	@GeneratedValue(generator = "generator")

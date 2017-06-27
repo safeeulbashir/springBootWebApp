@@ -36,8 +36,7 @@ public class EmployeeDao implements EmployeeDaoInterface {
 		transaction.commit();
 		session.close();
 	}
-
-	@Override
+		@Override
 	public Employee getEmployee(Integer employeeNo) {
 		Session session= sessionFactory.openSession();
 		Employee employee = (Employee) session.get(Employee.class, employeeNo);

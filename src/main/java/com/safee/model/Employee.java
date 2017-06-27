@@ -19,6 +19,17 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "employee")
 public class Employee {
+	public Employee(Date birthDate, Date hireDate, String firstName, String lastName,
+			String gender) {
+		super();
+		
+		this.birthDate = birthDate;
+		this.hireDate = hireDate;
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.gender = gender;
+	}
+
 	public List<Address> getAddresses() {
 		return addresses;
 	}
