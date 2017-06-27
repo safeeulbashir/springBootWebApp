@@ -22,11 +22,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.safee.DAO.EmployeeDao;
 import com.safee.model.Employee;
-import com.safee.model.EmployeeInformations;
 import com.safee.service.EmployeeServices;
-import com.safee.validator.EmpInfValidator;
 import com.safee.validator.EmployeeValidator;
 
 @Controller
@@ -39,8 +36,6 @@ public class EmployeeController {
 	private String message = "Hello World";
 	@Autowired
 	private EmployeeValidator employeeValidator;
-	@Autowired
-	private EmpInfValidator empInfValidator;
 
 	@InitBinder("employee")
 	public void initBinder(WebDataBinder binder) {
@@ -52,11 +47,7 @@ public class EmployeeController {
 
 	}
 
-	@InitBinder("empInfValidator")
-	public void empInfBinder(WebDataBinder binder) {
-		binder.addValidators(empInfValidator);
-	}
-
+	
 	@RequestMapping("/")
 	public String welcome(Map<String, Object> model) {
 		model.put("message", this.message);
@@ -92,10 +83,7 @@ public class EmployeeController {
 		return "update";
 	}
 
-	@ModelAttribute("employeeInformation")
-	public EmployeeInformations getUser(Model Model) {
-		return new EmployeeInformations();
-	}
+	
 
 	@ModelAttribute("employee")
 	public Employee getEmployeeForView(Model Model) {

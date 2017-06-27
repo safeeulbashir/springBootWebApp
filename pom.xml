@@ -5,9 +5,6 @@
 
 	<artifactId>spring-boot-web-jsp</artifactId>
 	<packaging>jar</packaging>
-	<name>Spring Boot Web JSP Example</name>
-	<description>Spring Boot Web JSP Example</description>
-	<url>https://www.mkyong.com</url>
 	<version>1.0</version>
 
 	<parent>
@@ -22,6 +19,10 @@
 
 	<dependencies>
 		<dependency>
+			<groupId>com.fasterxml.jackson.dataformat</groupId>
+			<artifactId>jackson-dataformat-xml</artifactId>
+		</dependency>
+		<dependency>
 			<groupId> org.springframework.boot </groupId>
 			<artifactId>spring-boot-starter-data-jpa </artifactId>
 		</dependency>
@@ -31,7 +32,12 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
-
+		<!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-web-services -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-web-services</artifactId>
+			<version>1.4.0.RELEASE</version>
+		</dependency>
 		<!-- Web with Tomcat + Embed -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -59,6 +65,12 @@
 			<version>4.6.1</version>
 			<scope>provided</scope>
 		</dependency>
+		<!-- https://mvnrepository.com/artifact/wsdl4j/wsdl4j -->
+		<dependency>
+			<groupId>wsdl4j</groupId>
+			<artifactId>wsdl4j</artifactId>
+			<version>1.6.3</version>
+		</dependency>
 
 		<!-- Optional, for bootstrap -->
 		<dependency>
@@ -77,12 +89,6 @@
 			<artifactId>mysql-connector-java</artifactId>
 			<version>5.1.41</version>
 		</dependency>
-
-		<dependency>
-			<groupId>bsf</groupId>
-			<artifactId>bsf</artifactId>
-			<version>2.4.0</version>
-		</dependency>
 		<dependency>
 			<groupId>org.apache.camel</groupId>
 			<artifactId>camel-core</artifactId>
@@ -98,19 +104,31 @@
 			<artifactId>cglib</artifactId>
 			<version>3.2.5</version>
 		</dependency>
-
-
 		<dependency>
 			<groupId>org.hibernate</groupId>
 			<artifactId>hibernate-jpamodelgen</artifactId>
 		</dependency>
+
 	</dependencies>
 	<build>
 		<plugins>
-			<!-- Package as an executable jar/war -->
 			<plugin>
-				<groupId>org.springframework.boot</groupId>
-				<artifactId>spring-boot-maven-plugin</artifactId>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>jaxb2-maven-plugin</artifactId>
+				<version>1.6</version>
+				<executions>
+					<execution>
+						<id>xjc</id>
+						<goals>
+							<goal>xjc</goal>
+						</goals>
+					</execution>
+				</executions>
+				<configuration>
+					<schemaDirectory>${project.basedir}/src/main/resources/</schemaDirectory>
+					<outputDirectory>${project.basedir}/src/main/java</outputDirectory>
+					<clearOutputDir>false</clearOutputDir>
+				</configuration>
 			</plugin>
 		</plugins>
 	</build>
